@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NR-LauraTTS</title>
+  <!-- <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"> -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="css/bulma.min.css">
+  <link rel="stylesheet" href="css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="css/bulma-slider.min.css">
+  <link rel="stylesheet" href="css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="js/fontawesome.all.min.js"></script>
+  <script src="js/bulma-carousel.min.js"></script>
+  <script src="js/bulma-slider.min.js"></script>
+  <script src="js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Incorporating Noise Robustness into LLM-based Zero-shot TTS with Discrete Acoustic Token Denoising</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block"><b>Anonymously submitted to Interspeech 2025</b></span>
+              <!-- <span class="author-block"><a href="https://yxlu-0102.github.io" target="_blank"><b>Ye-Xin Lu</b></a>,</span>
+              <span class="author-block">Hui-Peng Du,</span>
+              <span class="author-block">Zheng-Yan Sheng,</span>
+              <span class="author-block"><a href="https://faculty.ustc.edu.cn/aiyang/en/index.htm" target="_blank">Yang Ai</a>,</span>
+              <span class="author-block"><a href="http://staff.ustc.edu.cn/~zhling" target="_blank">Zhen-Hua Ling</a>,</span> -->
+            </div>
+
+            <!-- <div class="is-size-5 publication-authors">
+              <span class="author-block">National Engineering Research Center of Speech and Language Information Processing <br> University of Science and Technology of China<br></span>
+            </div> -->
+
+            <!-- <div class="column has-text-centered">
+              <div class="publication-links"> -->
+                <!--                   Code Link. -->
+                <!-- <span class="link-block">
+                  <a href="https://github.com/yxlu-0102/NR-LauraTTS" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+                </span> -->
+                <!--                   ArXiv Link -->
+                <!-- <span class="link-block">
+                  <a href="https://arxiv.org" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper</span>
+                  </a>
+                </span>
+              </div>
+            </div> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Large language model (LLM) based zero-shot text-to-speech (TTS) methods tend to preserve the acoustic environment of the audio prompt, leading to degradation in synthesized speech quality when the audio prompt contains noise. 
+            In this paper, we propose a novel neural codec-based speech denoiser and integrate it with the advanced LLM-based TTS model, LauraTTS, to achieve noise-robust zero-shot TTS. 
+            The proposed codec denoiser consists of an audio codec, a token denoiser, and an embedding refiner. 
+            The token denoiser predicts the first two groups of clean acoustic tokens from the noisy ones, which can serve as the acoustic prompt for LauraTTS to synthesize high-quality personalized speech or be converted to clean speech waveforms through the embedding refiner and codec decoder. 
+            Experimental results show that our proposed codec denoiser outperforms state-of-the-art speech enhancement (SE) methods, and the proposed noise-robust LauraTTS surpasses the approach using the enhanced audio prompt.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<br>
+<section class="hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-centered">
+        <h2 class="title is-3">I. Speech Enhancement</h2>
+      </div>
+    </div>
+  </div>
+  <br>
+  <table align = "center" style="text-align: center;">
+    <br>
+    <tr style="height: 30px;">
+      <td style="text-align: center; width: 100px;"></td>
+      <td style="text-align: center;"><b>Natural Noisy</b></th>
+      <td style="text-align: center;"><b>Natural Clean</b></th>
+      <td style="text-align: center;"><b>CMGAN</b></th>
+      <td style="text-align: center;"><b>MP-SENet</b></th>
+      <td style="text-align: center;"><b>Codec Denoiser</b></th>
+    </tr>
+
+    <tr>
+      <td style="text-align: center; width: 100px;"></td>
+      <td><img src="samples/SE/1089_134691_000045_000005/noisy.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/1089_134691_000045_000005/clean.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/1089_134691_000045_000005/cmgan.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/1089_134691_000045_000005/mpsenet.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/1089_134691_000045_000005/codec-denoiser.png" width="200px" height="128px"></td>
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 100px; height: 50px; line-height: 50px;"><b>Sample 1</b></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/1089_134691_000045_000005/noisy.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/1089_134691_000045_000005/clean.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/1089_134691_000045_000005/cmgan.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/1089_134691_000045_000005/mpsenet.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/1089_134691_000045_000005/codec-denoiser.wav" type="audio/wav"></audio></td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center; width: 100px;"></td>
+      <td><img src="samples/SE/121_121726_000034_000001/noisy.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/121_121726_000034_000001/clean.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/121_121726_000034_000001/cmgan.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/121_121726_000034_000001/mpsenet.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/121_121726_000034_000001/codec-denoiser.png" width="200px" height="128px"></td>
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 100px; height: 50px; line-height: 50px;"><b>Sample 2</b></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/121_121726_000034_000001/noisy.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/121_121726_000034_000001/clean.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/121_121726_000034_000001/cmgan.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/121_121726_000034_000001/mpsenet.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/121_121726_000034_000001/codec-denoiser.wav" type="audio/wav"></audio></td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center; width: 100px;"></td>
+      <td><img src="samples/SE/260_123286_000060_000002/noisy.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/260_123286_000060_000002/clean.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/260_123286_000060_000002/cmgan.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/260_123286_000060_000002/mpsenet.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/260_123286_000060_000002/codec-denoiser.png" width="200px" height="128px"></td>
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 100px; height: 50px; line-height: 50px;"><b>Sample 3</b></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/260_123286_000060_000002/noisy.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/260_123286_000060_000002/clean.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/260_123286_000060_000002/cmgan.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/260_123286_000060_000002/mpsenet.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/260_123286_000060_000002/codec-denoiser.wav" type="audio/wav"></audio></td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center; width: 100px;"></td>
+      <td><img src="samples/SE/237_126133_000056_000000/noisy.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/237_126133_000056_000000/clean.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/237_126133_000056_000000/cmgan.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/237_126133_000056_000000/mpsenet.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/237_126133_000056_000000/codec-denoiser.png" width="200px" height="128px"></td>
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 100px; height: 50px; line-height: 50px;"><b>Sample 4</b></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/237_126133_000056_000000/noisy.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/237_126133_000056_000000/clean.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/237_126133_000056_000000/cmgan.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/237_126133_000056_000000/mpsenet.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/237_126133_000056_000000/codec-denoiser.wav" type="audio/wav"></audio></td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center; width: 100px;"></td>
+      <td><img src="samples/SE/1320_122617_000055_000003/noisy.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/1320_122617_000055_000003/clean.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/1320_122617_000055_000003/cmgan.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/1320_122617_000055_000003/mpsenet.png" width="200px" height="128px"></td>
+      <td><img src="samples/SE/1320_122617_000055_000003/codec-denoiser.png" width="200px" height="128px"></td>
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 100px; height: 50px; line-height: 50px;"><b>Sample 5</b></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/1320_122617_000055_000003/noisy.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/1320_122617_000055_000003/clean.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/1320_122617_000055_000003/cmgan.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/1320_122617_000055_000003/mpsenet.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/SE/1320_122617_000055_000003/codec-denoiser.wav" type="audio/wav"></audio></td>
+    </tr>
+  </table>
+
+</section>
+
+<hr>
+
+<section class="hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-centered">
+        <h2 class="title is-3">II. Noise-Robust Zero-Shot Text-to-Speech</h2>
+      </div>
+    </div>
+  </div>
+  <br>
+  <table align = "center" style="text-align: center;">
+    <tr style="height: 30px;">
+      <td style="text-align: center;"><b>Text Prompt</b></th>
+      <td style="text-align: center;"><b>Clean Prompt</b></th>
+      <td style="text-align: center;"><b>LauraTTS (Clean Prompt)</b></th>
+      <td style="text-align: center;"><b>Noisy Prompt</b></th>
+      <td style="text-align: center;"><b>LauraTTS (Noisy Prompt)</b></th>
+      <td style="text-align: center;"><b>LauraTTS+MP-SENet</b></th>
+      <td style="text-align: center;"><b>NR-LauraTTS</b></th>
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 350px; height: 50px; line-height: 20px;"><b>The beggar's plea, the politician's sceptre and the drummer's ablest assistant.</b></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2300_131720_000004_000011/clean_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2300_131720_000004_000011/clean_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2300_131720_000004_000011/noisy_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2300_131720_000004_000011/noisy_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2300_131720_000004_000011/lauratts+mpsenet.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2300_131720_000004_000011/nr-lauratts.wav" type="audio/wav"></audio></td>
+    </tr>
+    <tr>
+      <td colspan="7">&nbsp;</td> <!-- Empty row -->
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 350px; height: 50px; line-height: 20px;"><b>If the child gives the effect another turn of the screw, what do you say to TWO children?</b></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2961_961_000005_000004/clean_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2961_961_000005_000004/clean_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2961_961_000005_000004/noisy_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2961_961_000005_000004/noisy_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2961_961_000005_000004/lauratts+mpsenet.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2961_961_000005_000004/nr-lauratts.wav" type="audio/wav"></audio></td>
+    </tr>
+    <tr>
+      <td colspan="7">&nbsp;</td> <!-- Empty row -->
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 350px; height: 50px; line-height: 20px;"><b>I can see Douglas there before the fire, to which he had got up to present his back, looking down at his interlocutor with his hands in his pockets.</b></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/3570_5694_000014_000015/clean_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/3570_5694_000014_000015/clean_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/3570_5694_000014_000015/noisy_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/3570_5694_000014_000015/noisy_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/3570_5694_000014_000015/lauratts+mpsenet.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/3570_5694_000014_000015/nr-lauratts.wav" type="audio/wav"></audio></td>
+    </tr>
+    <tr>
+      <td colspan="7">&nbsp;</td> <!-- Empty row -->
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 350px; height: 50px; line-height: 20px;"><b>An instant of wild flight had delivered him and the cry of triumph which his lips withheld cleft his brain.</b></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2830_3979_000018_000009/clean_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2830_3979_000018_000009/clean_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2830_3979_000018_000009/noisy_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2830_3979_000018_000009/noisy_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2830_3979_000018_000009/lauratts+mpsenet.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/2830_3979_000018_000009/nr-lauratts.wav" type="audio/wav"></audio></td>
+    </tr>
+    <tr>
+      <td colspan="7">&nbsp;</td> <!-- Empty row -->
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 350px; height: 50px; line-height: 20px;"><b>"She will have to work, when she comes to life," said Margolotte.</b></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/672_122797_000057_000002/clean_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/672_122797_000057_000002/clean_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/672_122797_000057_000002/noisy_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/672_122797_000057_000002/noisy_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/672_122797_000057_000002/lauratts+mpsenet.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/672_122797_000057_000002/nr-lauratts.wav" type="audio/wav"></audio></td>
+    </tr>
+    <tr>
+      <td colspan="7">&nbsp;</td> <!-- Empty row -->
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 350px; height: 50px; line-height: 20px;"><b>She wanted a glance of the new books and periodicals and talk of great philanthropies and reforms.</b></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/4446_2275_000046_000005/clean_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/4446_2275_000046_000005/clean_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/4446_2275_000046_000005/noisy_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/4446_2275_000046_000005/noisy_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/4446_2275_000046_000005/lauratts+mpsenet.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/4446_2275_000046_000005/nr-lauratts.wav" type="audio/wav"></audio></td>
+    </tr>
+    <tr>
+      <td colspan="7">&nbsp;</td> <!-- Empty row -->
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 350px; height: 50px; line-height: 20px;"><b>Pursuing the direction given by this discovery, he entered the neighboring thicket, and struck the trail, as fresh and obvious as it had been before they reached the spring.</b></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/7729_102255_000010_000002/clean_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/7729_102255_000010_000002/clean_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/7729_102255_000010_000002/noisy_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/7729_102255_000010_000002/noisy_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/7729_102255_000010_000002/lauratts+mpsenet.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/7729_102255_000010_000002/nr-lauratts.wav" type="audio/wav"></audio></td>
+    </tr>
+    <tr>
+      <td colspan="7">&nbsp;</td> <!-- Empty row -->
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 350px; height: 50px; line-height: 20px;"><b>Altogether, the appearance of the individual was forlorn and miserable.</b></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/8455_210777_000034_000000/clean_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/8455_210777_000034_000000/clean_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/8455_210777_000034_000000/noisy_prompt.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/8455_210777_000034_000000/noisy_ref.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/8455_210777_000034_000000/lauratts+mpsenet.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="samples/TTS/8455_210777_000034_000000/nr-lauratts.wav" type="audio/wav"></audio></td>
+    </tr>
+
+  </table>
+</section>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
